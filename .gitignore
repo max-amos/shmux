@@ -1,0 +1,10 @@
+# Profile configuration files with sensitive data
+# Only .example.sh files should be committed
+profiles/*.sh
+!profiles/*.example.sh
+
+# macOS
+.DS_Store
+
+# Logs
+*.log
