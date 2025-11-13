@@ -2,7 +2,7 @@
 
 > **SSH + tmux multiplexer** - One command to connect to any server and session
 
-Stop wasting time manually connecting to VPNs, SSHing into servers, and hunting for tmux sessions. **shmux** automates your entire remote development workflow into a single interactive command.
+Stop wasting time SSHing into servers and hunting for tmux sessions. **shmux** automates your entire remote development workflow into a single interactive command.
 
 ```bash
 $ shmux
@@ -28,52 +28,50 @@ Enter number to attach (or press ESC/Enter to skip):
 
 ## Why shmux?
 
-Traditional workflow:
+**Traditional workflow:**
 ```bash
-# 1. Start VPN (wait for connection...)
-sudo openvpn --config ~/my-vpn.ovpn
+# Remember which server...
+ssh user@192.168.1.100
 
-# 2. In another terminal, start SOCKS proxy
-ssh -D 1080 -N user@server
-
-# 3. In yet another terminal, SSH in
-ssh user@server
-
-# 4. List tmux sessions
+# List tmux sessions...
 tmux list-sessions
 
-# 5. Finally attach
+# Finally attach
 tmux attach -t my-session
+
+# Repeat for each server you manage...
 ```
 
 **With shmux:**
 ```bash
-shmux home-network Desktop my-session
+shmux                              # Interactive: pick profile, server, session
+shmux home Desktop my-session      # Direct: one command, done
 ```
 
-That's it. Done in one command.
+That's it. No remembering IPs, no manual tmux commands.
 
 ## Features
 
-### 🌐 Multi-Network Support
-- Manage multiple VPN networks (home, work, lab)
-- Each network has its own config and servers
-- Switch between networks seamlessly
+### 🖥️ Multi-Server Management
+- Organize servers into profiles (home, work, lab)
+- Interactive numbered menus for quick selection
+- Per-server credentials (passwords or SSH keys)
 
-### 🖥️ Multiple Servers Per Network
-- Define all your servers in one place
-- Interactive numbered menu for quick selection
-- Support for different credentials per server
-
-### ⚡ Smart & Fast
-- Reuses existing VPN/proxy connections (no restart needed)
+### ⚡ Smart Workflow
+- One command to SSH + attach to tmux
 - Auto-selects when only one option exists (no menu spam)
 - Terminal type compatibility built-in
+- Connection reuse where applicable
 
 ### 🎯 Flexible Usage
-- Fully interactive menus
-- Quick commands with arguments
+- Fully interactive: pick profile → server → session
+- Direct mode: `shmux profile server session`
 - Mix and match: specify what you know, pick the rest
+
+### 🔐 Optional VPN Integration
+- Can manage OpenVPN connections per profile
+- SOCKS proxy tunneling for selective routing
+- Useful for homelab, corporate networks, or cloud private networks
 
 ## Quick Start
 
